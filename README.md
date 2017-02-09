@@ -67,7 +67,7 @@ Example code for various languages may be found in this repo. Replace [API Key] 
   - [JavaScript](sample_code/js/index.html)
   - [Python](sample_code/python/openfood_api.py)
   - [Ruby](sample_code/ruby/openfood_api.rb)
-  - [Android](sample_code/android/README.md)
+  - [Android](sample_code/android/)
 
 ## Issues Log
 
