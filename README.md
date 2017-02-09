@@ -15,25 +15,25 @@ Stay informed about OpenFood, and sign up for our [newsletter](https://docs.goog
 All content, including images, is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 
-### Current Version
+## Current Version
 
 By default, all requests receive the v2 version of the API.
 
-### Schema
+## Schema
 
 All API access is over HTTPS, and accessed from ```https://openfood.ch```. All data is sent and received as JSON.
 
 The OpenFood API is based on the [JSON API Specification](http://jsonapi.org/) for resources access, while the search functionality is provided through an ElasticSearch cluster. The search endpoints use ElasticSearch query language.
 
-### Authentication
+## Authentication
 
-#### Developer API Key
+### Developer API Key
 
 Sign up for a developer account on [OpenFood](https://www.openfood.ch) and visit the *API Keys* page. This key must be passed with all requests, in the header.
 
 You may request multiple API keys, and they may be deactivated or deleted at anytime by you. Once a key is deactivated or deleted it cannot be reused.
 
-#### Provide the API key in the Request headers
+### Provide the API key in the Request headers
 
 Each request made against the OpenFood API must include your API key. The key must be passed against a Token header, like:
 
@@ -43,7 +43,7 @@ Authorization: Token token="[API_KEY]"
 
 All traffic accessing OpenFood must travel across HTTPS.
 
-### Swagger Documentation
+## Swagger Documentation
 
 The API is documented via the [OpenAPI Specification](https://www.openapis.org/) via a [Swagger](http://swagger.io/) interface. This may be found on the [documentation page](https://www.openfood.ch/api-docs?locale=en).
 
@@ -52,14 +52,14 @@ The documentation may be freely viewed without an account. Using your developer 
 Endpoints examples can be found [here](sample_code/curl/openfood_api.md)
 
 
-### Search Endpoints
+## Search Endpoints
 
 Search endpoints, which contain the **_search** string are served using ElasticSearch. As such the full [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html) may be applied to OpenFood data.
 
 Examples of search can be found [here](sample_code/curl/openfood_api.md)
 
 
-### Example Code
+## Example Code
 
 Example code for various languages may be found in this repo. Replace [API Key] with your own key where necessary. We currently support examples for
 
@@ -69,16 +69,16 @@ Example code for various languages may be found in this repo. Replace [API Key] 
   - [Ruby](sample_code/ruby/openfood_api.rb)
   - Android
 
-### Issues Log
+## Issues Log
 
 Please log any issues, enhancement requests or code questions in the [Issues log](https://github.com/salathegroup/openfood_api/issues).
 
 
-### Slack Channel
+## Slack Channel
 
 You can also contact us and other community developers via the [Slack channel](https://openfoodch.slack.com).
 
 
-### Contributing
+## Contributing
 
 We welcome any suggestions or feature requests, please log an issue. Changes to this documentation or sample code is also welcome ... just make a pull request.
