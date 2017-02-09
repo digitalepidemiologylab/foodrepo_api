@@ -23,10 +23,21 @@ The OpenFood API is based on the [JSON API Specification](http://jsonapi.org/) f
 
 ### Authentication
 
-#### Obtain an API key
+#### Developer API Key
 
 Sign up for a developer account on [OpenFood](https://www.openfood.ch) and visit the *API Keys* page. This key must be passed with all requests, in the header.
 
+You may request multiple API keys, and they may be deactivated or deleted at anytime by you. Once a key is deactivated or deleted it cannot be reused.
+
+#### Provide the API key in the Request headers
+
+Each request made against the OpenFood API must include your API key. The key must be passed against a Token header, like:
+
+```
+Authorization: Token token="[API_KEY]"
+```
+
+All traffic accessing OpenFood must travel across HTTPS.
 
 ### Swagger Documentation
 
@@ -39,12 +50,22 @@ The documentation may be freely viewed without an account. Using your developer 
 
 Example code for various languages may be found in this repo. Replace [API Key] with your own key where necessary. We currently support examples for
 
-  - JavaScript
-  - Python
-  - Ruby
-  - Android (Java)
+  - [Curl](sample_code/curl/openfood_api.md)
+  - [JavaScript](sample_code/js/index.html)
+  - [Python](sample_code/python/openfood_api.py)
+  - [Ruby](sample_code/python/openfood_api.rb)
+  - Android
 
- ### Issues Log
+### Issues Log
+
+Please log any issues, enhancement requests or code questions in the [Issues log](https://github.com/salathegroup/openfood_api/issues). We will
 
 
- ### Contributing
+### Slack Channel
+
+You can also contact us and other community developers via the [Slack channel](https://openfoodch.slack.com).
+
+
+### Contributing
+
+We welcome any suggestions or feature requests, please log an issue. Changes to this documentation or sample code is also welcome... just make a pull request.
