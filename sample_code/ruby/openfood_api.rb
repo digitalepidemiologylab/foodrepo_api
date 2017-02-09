@@ -11,6 +11,8 @@ require 'json'
 BASE_URL='https://www.openfood.ch/api/v2'
 API_KEY='secret'
 
+url = "#{BASE_URL}/products"
+
 query = {
   "page[number]" => "2",
   "size[size]" => "5"
@@ -22,7 +24,6 @@ headers = {
   "Content-Type" => "application/vnd.api+json"
 }
 
-url = "#{BASE_URL}/products"
-puts url
+
 response = HTTParty.get(url, query: query, headers: headers, :debug_output => $stdout)
 puts response.body
