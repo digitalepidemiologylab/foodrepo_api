@@ -1,3 +1,5 @@
+![OpenFood Logo](images/OpenFood.png?raw=true "OpenFood")
+
 ## OpenFood API
 
 ## Overview
