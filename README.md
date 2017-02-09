@@ -8,7 +8,7 @@ At OpenFood we believe in open data delivered using open source technologies and
 
 ## Newsletter
 
-Stay informed about OpenFood, and sign up for our [newsletter](https://docs.google.com/forms/d/e/1FAIpQLScYQg34Lj7du2Z3Rwqa02fmG84jD0Y1YAbE975uphiZLBFSvQ/viewform)
+Stay informed about OpenFood, and sign up for our [newsletter](https://docs.google.com/forms/d/e/1FAIpQLScYQg34Lj7du2Z3Rwqa02fmG84jD0Y1YAbE975uphiZLBFSvQ/viewform).
 
 ## License
 
