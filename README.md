@@ -53,7 +53,7 @@ Example code for various languages may be found in this repo. Replace [API Key] 
   - [Curl](sample_code/curl/openfood_api.md)
   - [JavaScript](sample_code/js/index.html)
   - [Python](sample_code/python/openfood_api.py)
-  - [Ruby](sample_code/python/openfood_api.rb)
+  - [Ruby](sample_code/ruby/openfood_api.rb)
   - Android
 
 ### Issues Log
