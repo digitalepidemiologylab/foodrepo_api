@@ -1,0 +1,112 @@
+
+<html>
+
+<head>
+
+<style>
+body     {font-family: sans-serif}
+#api_key {font-family: monospace; width: 300px; margin-left: 1em}
+#error   {color: red}
+#list    {}
+#detail  {max-height:300px; overflow:scroll}
+</style>
+
+<script src="openfoodapi.js"></script>
+
+</head>
+
+<body>
+
+<h3>Openfood API demo</h3>
+
+Put here your API Key: <input id="api_key" type="text" onkeyup="start()" value=""></input>
+
+<h4 id="error"></h4>
+<hr>
+<h3>Details of product with id 972</h3>
+<pre id="detail"></pre>
+<hr>
+<h3>List of all products</h3>
+<h4 id="count"></h4>
+<h5 id="time"></h5>
+<div id="list"></div>
+
+<script>
+
+var list_element = document.getElementById('list'),
+    detail_element = document.getElementById('detail'),
+    count_element = document.getElementById('count'),
+    time_element = document.getElementById('time'),
+    error_element = document.getElementById('error'),
+    api_key_element = document.getElementById('api_key'),
+    count,
+    request_timeout = null,
+    product_batch = 10,
+    endpoint = null,
+    api_key;
+
+function reset() {
+    time_element.innerHTML  = '';
+    count_element.innerHTML = '';
+    list_element.innerHTML  = '';
+    error_element.innerHTML  = '';
+    count = 0;
+}
+
+function show_detail(response) {
+    detail_element.innerHTML = JSON.stringify(response, null, 4);
+}
+
+function show_products(data) {
+    count += data.length;
+    count_element.innerHTML = 'Count: ' + count;
+    var descriptions = '';
+    for (var i = 0, n = data.length; i < n; i++) {
+        var product = data[i];
+        var product_name = product.attributes.name ? product.attributes.name : "";
+        descriptions += 'id: ' + product.id + ", barcode: " + product.attributes.barcode + ', name: "' + product_name + '"<br>';
+    }
+    list_element.innerHTML += descriptions;
+}
+
+function start() {
+    api_key = api_key_element.value;
+    if (!endpoint || api_key != endpoint.api_key) {
+        endpoint = new openfoodapi.Endpoint(api_key);
+
+        reset()
+
+        // Cancel previous request, if any
+        if (request_timeout) clearTimeout(request_timeout);
+
+        var current_endpoint = endpoint;
+        endpoint.product(972, null, function(response) {
+            if (endpoint != current_endpoint) return;
+
+            show_detail(response);
+        });
+
+        var last_call = new Date();
+        endpoint.products(product_batch, 1, function(response) {
+            if (endpoint != current_endpoint) return;
+
+            var data = response.data;
+            if (data) {
+                var time = Math.round((new Date() - last_call) / 10) / 100;
+                time_element.innerHTML = data.length + ' products got in ' + time + 's';
+                show_products(data);
+
+                last_call = new Date();
+                request_timeout = setTimeout(response.next, 1);
+            } else {
+                error_element.innerHTML = response;
+            }
+        });
+    }
+}
+
+</script>
+
+</body>
+
+</html>
