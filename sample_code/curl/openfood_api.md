@@ -122,6 +122,30 @@ curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/
 '
 ```
 
+### Advanced product search
+
+Find all 'coop' products (that are not also 'naturaplan' products) that were added to the database in 2016
+
+```bash
+curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' "https://www.openfood.ch/api/v2/nutrients/_search?pretty" -H 'Content-Type: application/json' -H 'Authorization: Token token="[API_KEY]"' -d'
+{
+  "query": { 
+    "bool": {
+      "must_not": [
+        { "match": { "name_translations.de": "naturaplan" }}
+      ],
+      "must": [
+        { "match": { "name_translations.de": "coop" }}
+      ],
+      "filter": [
+        { "range": { "created_at": { "gte": "2016-01-01" }}},
+        { "range": { "created_at": { "lt": "2017-01-01" }}}
+      ]
+    }
+  }
+}
+```
+
 #### Terms search against nutrients
 
 ```bash
