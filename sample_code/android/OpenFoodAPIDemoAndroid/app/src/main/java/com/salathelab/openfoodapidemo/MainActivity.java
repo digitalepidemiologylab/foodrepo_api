@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -60,6 +61,15 @@ public class MainActivity extends AppCompatActivity {
                 toggleDownloaderActive();
             }
         });
+
+        chkScrollContent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    scrollResultsToBottom(false);
+                }
+            }
+        });
     }
 
     private void startDownload() {
@@ -69,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 txtKey.getText().toString(),
                 new ProductsDownloader.ProgressCallback() {
                     @Override
-                    public void onStatusChange(CharSequence status) {
+                    public void onStatusChanged(CharSequence status) {
                         lblStatus.setText(status);
                         if (debugOutput) {
                             SpannableString s = new SpannableString("    " + status);
@@ -125,12 +135,22 @@ public class MainActivity extends AppCompatActivity {
         txtResult.append("\n");
 
         if (chkScrollContent.isChecked()) {
+            scrollResultsToBottom(true);
+        }
+    }
+
+    private void scrollResultsToBottom(boolean afterPost) {
+        if (afterPost) {
+            // this will wait one frame before scrolling.
+            // Useful if we know we want to scroll on the same frame that we are adding content.
             scrlTxtResult.post(new Runnable() {
                 @Override
                 public void run() {
                     scrlTxtResult.fullScroll(ScrollView.FOCUS_DOWN);
                 }
             });
+        } else {
+            scrlTxtResult.fullScroll(ScrollView.FOCUS_DOWN);
         }
     }
 }
