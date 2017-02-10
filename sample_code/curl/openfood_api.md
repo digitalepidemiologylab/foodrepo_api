@@ -107,6 +107,21 @@ curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/
 '
 ```
 
+#### Wildcard search against product names
+
+```bash
+curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' "https://www.openfood.ch/api/v2/products/_search?pretty" -H 'Content-Type: application/json' -H 'Authorization: Token token="[API_KEY]"' -d'
+{
+  "_source": true,
+  "query": {
+    "wildcard": {
+      "name_translations.en" : "toblerone*"
+    }
+  }
+}
+'
+```
+
 #### Terms search against nutrients
 
 ```bash
