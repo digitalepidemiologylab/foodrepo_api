@@ -2,6 +2,8 @@ package com.salathelab.openfoodapidemo.async;
 
 import android.os.AsyncTask;
 
+import com.salathelab.openfoodapidemo.helper.JSONHelper;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +45,7 @@ public class ProductsDownloader extends AsyncTask<ProductsDownloader.DownloaderP
     }
 
     public interface ProgressCallback {
-        void onStatusChange(CharSequence status);
+        void onStatusChanged(CharSequence status);
         void onDataAdded(CharSequence data);
     }
     public interface SuccessCallback {
@@ -90,7 +92,7 @@ public class ProductsDownloader extends AsyncTask<ProductsDownloader.DownloaderP
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(15000);
                 conn.setRequestMethod("GET");
-                conn.setRequestProperty("Authorization", "Token token=" + params[0].apiKey);
+                conn.setRequestProperty("Authorization", "Token token=" + startParams.apiKey);
                 try {
                     stream = conn.getInputStream();
                 } catch (FileNotFoundException e) {
@@ -121,18 +123,14 @@ public class ProductsDownloader extends AsyncTask<ProductsDownloader.DownloaderP
                         int pId = product.getInt("id");
                         JSONObject productAttrs = product.getJSONObject("attributes");
                         String pBarcode = productAttrs.getString("barcode");
-                        String pName = productAttrs.getString("name");
-                        if (productAttrs.isNull("name")) {
-                            pName = "";
-                        }
+                        String pName = JSONHelper.getStringIfExists(productAttrs, "name", "");
                         sb.append("id: " + pId + ", barcode: " + pBarcode + ", name: \"" + pName + "\"\n");
                     }
                     publishProgress(new DownloaderParamsProgress("Parsed " + numProducts + " products", sb.toString()));
                     JSONObject links = jsonObj.getJSONObject("links");
-                    String nextAddress = links.getString("next");
-                    if (nextAddress != null) {
+                    address = JSONHelper.getStringIfExists(links, "next");
+                    if (numProducts > 0 && address != null) {
                         shouldGetData = true;
-                        address = nextAddress;
                         publishProgress(new DownloaderParamsProgress("Found link to next page of data", null));
                     }
                 } catch (JSONException e) {
@@ -158,7 +156,7 @@ public class ProductsDownloader extends AsyncTask<ProductsDownloader.DownloaderP
     @Override
     protected void onProgressUpdate(DownloaderParamsProgress... values) {
         if (values[0].status != null) {
-            startParams.progressCallback.onStatusChange(values[0].status);
+            startParams.progressCallback.onStatusChanged(values[0].status);
         }
         if (values[0].data != null) {
             startParams.progressCallback.onDataAdded(values[0].data);
