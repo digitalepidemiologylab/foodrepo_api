@@ -1,15 +1,20 @@
 """
-Sample Python 2.7 code for a call against the OpenFood API products listing, with paging
+Sample Python 2.7 code for a call against the OpenFood API product search
 Replace [API_KEY] with your API Key
-curl -X POST --header "Content-Type: application/vnd.api+json" --header "Accept: application/json" --header "Authorization: Token token=5ca3831de0a81aefce3e3f0b4f774a4a" -d "{
+curl -X POST --header "Content-Type: application/vnd.api+json" --header "Accept: application/json" --header "Authorization: Token token=[API_KEY]" -d "{
   \"query\": {
     \"wildcard\": {
       \"name_translations.en\" : \"toblerone*\"
     }
   }
 }" "https://www.openfood.ch/api/v2/products/_search"
+
 USAGE:
 $ python product_search.py
+
+MORE INFO:
+For more examples of search queries using Elastic Search's DSL, see the curl examples here:
+https://github.com/salathegroup/openfood_api/blob/master/sample_code/curl/openfood_api.md
 """
 
 import requests
