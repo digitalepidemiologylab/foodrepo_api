@@ -122,9 +122,9 @@ curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/
 '
 ```
 
-### Advanced product search
+#### Advanced product search
 
-Find all 'coop' products (that are not also 'naturaplan' products) that were added to the database in 2016
+Find all 'coop' products (that are not also 'naturaplan' products) that were added to the database in 2016.
 
 ```bash
 curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' "https://www.openfood.ch/api/v2/nutrients/_search?pretty" -H 'Content-Type: application/json' -H 'Authorization: Token token="[API_KEY]"' -d'
