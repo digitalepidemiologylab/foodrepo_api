@@ -1,4 +1,4 @@
-package com.salathelab.openfoodapidemo;
+package com.salathelab.openfood.api.demo;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -21,7 +21,8 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.salathelab.openfoodapidemo.async.ProductsDownloader;
+import com.salathelab.openfood.api.v2.ProductsDownloader;
+import com.salathelab.openfoodapidemo.R;
 
 public class MainActivity extends AppCompatActivity {
     private EditText txtKey;

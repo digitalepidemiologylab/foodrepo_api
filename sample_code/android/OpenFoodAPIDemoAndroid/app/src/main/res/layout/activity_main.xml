@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.salathelab.openfoodapidemo.MainActivity">
+    tools:context="com.salathelab.openfood.api.demo.MainActivity">
 
     <EditText
         android:layout_width="wrap_content"

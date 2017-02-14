@@ -1,11 +1,7 @@
-package com.salathelab.openfoodapidemo.helper;
+package com.salathelab.helper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-/**
- * Created by dj on 2/10/17.
- */
 
 public class JSONHelper {
     public static String getStringIfExists(JSONObject obj, String key) throws JSONException {
@@ -16,5 +12,16 @@ public class JSONHelper {
             return defaultValue;
         }
         return obj.getString(key);
+    }
+
+    public static float getFloatIfExists(JSONObject obj, String key) {
+        return getFloatIfExists(obj, key, 0.0f);
+    }
+    public static float getFloatIfExists(JSONObject obj, String key, float defaultValue) {
+        try {
+            return (float)obj.getDouble(key);
+        } catch (JSONException e) {
+            return defaultValue;
+        }
     }
 }

@@ -1,8 +1,10 @@
-package com.salathelab.openfoodapidemo.async;
+package com.salathelab.openfood.api.v2;
 
 import android.os.AsyncTask;
 
-import com.salathelab.openfoodapidemo.helper.JSONHelper;
+import com.salathelab.helper.JSONHelper;
+import com.salathelab.openfood.api.v2.endpoint.ProductsEndpoint;
+import com.salathelab.openfood.api.v2.model.Product;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,6 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLDecoder;
 
@@ -55,9 +58,6 @@ public class ProductsDownloader extends AsyncTask<ProductsDownloader.DownloaderP
         void onCancel();
     }
 
-
-    final String ORIGIN = "https://www.openfood.ch";
-    final String PRODUCTS_ENDPOINT = "/api/v2/products";
     long startTaskNanos;
     DownloaderParamsStart startParams;
 
@@ -72,33 +72,18 @@ public class ProductsDownloader extends AsyncTask<ProductsDownloader.DownloaderP
             }
             publishProgress(new DownloaderParamsProgress("Got API Key: " + displayKey, null));
         }
-        String address = ORIGIN + PRODUCTS_ENDPOINT;
-        boolean shouldGetData = true;
-        while (shouldGetData) {
-            long startPageNanos = System.nanoTime();
-            shouldGetData = false;
-            {
-                String displayAddress = address;
-                try {
-                    displayAddress = URLDecoder.decode(address, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                }
-                publishProgress(new DownloaderParamsProgress("Connecting to '" + displayAddress + "'...", null));
-            }
 
+        ProductsEndpoint nextEndpoint = new ProductsEndpoint(params[0].apiKey, 50, 0);
+        while (nextEndpoint != null) {
+            long startPageNanos = System.nanoTime();
+            ProductsEndpoint endpoint = nextEndpoint;
+            nextEndpoint = null;
+
+            publishProgress(new DownloaderParamsProgress("Connecting to '" + endpoint.getAddressDecoded() + "'...", null));
             InputStream stream = null;
             try {
-                URL url = new URL(address);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setConnectTimeout(15000);
-                conn.setRequestMethod("GET");
-                conn.setRequestProperty("Authorization", "Token token=" + startParams.apiKey);
-                try {
-                    stream = conn.getInputStream();
-                } catch (FileNotFoundException e) {
-                    stream = conn.getErrorStream();
-                }
-                publishProgress(new DownloaderParamsProgress("Connected with response code '" + conn.getResponseCode() + "'. Receiving data...", null));
+                stream = endpoint.getStream();
+                publishProgress(new DownloaderParamsProgress("Connected with response code '" + endpoint.getResponseCode() + "'. Receiving data...", null));
                 BufferedReader reader = new BufferedReader(
                         new InputStreamReader(stream, "UTF-8"),
                         1024
@@ -115,28 +100,17 @@ public class ProductsDownloader extends AsyncTask<ProductsDownloader.DownloaderP
                 publishProgress(new DownloaderParamsProgress("Received data in " + (System.nanoTime() - startPageNanos)/1000000000.0f + " seconds. Parsing...", null));
                 try {
                     JSONObject jsonObj = new JSONObject(strData);
-                    JSONArray products = jsonObj.getJSONArray("data");
-                    int numProducts = products.length();
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < numProducts; ++i) {
-                        JSONObject product = products.getJSONObject(i);
-                        int pId = product.getInt("id");
-                        JSONObject productAttrs = product.getJSONObject("attributes");
-                        String pBarcode = productAttrs.getString("barcode");
-                        String pName = JSONHelper.getStringIfExists(productAttrs, "name", "");
-                        sb.append("id: " + pId + ", barcode: " + pBarcode + ", name: \"" + pName + "\"\n");
-                    }
-                    publishProgress(new DownloaderParamsProgress("Parsed " + numProducts + " products", sb.toString()));
+                    int numProducts = parseAndPrintProducts(jsonObj);
                     JSONObject links = jsonObj.getJSONObject("links");
-                    address = JSONHelper.getStringIfExists(links, "next");
-                    if (numProducts > 0 && address != null) {
-                        shouldGetData = true;
+                    String nextAddress = JSONHelper.getStringIfExists(links, "next");
+                    if (numProducts > 0 && nextAddress != null) {
+                        nextEndpoint = new ProductsEndpoint(params[0].apiKey, nextAddress);
                         publishProgress(new DownloaderParamsProgress("Found link to next page of data", null));
                     }
                 } catch (JSONException e) {
                     publishProgress(new DownloaderParamsProgress("Error parsing JSON", strData));
                 }
-            } catch (UnsupportedEncodingException e) {
+            } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -151,6 +125,18 @@ public class ProductsDownloader extends AsyncTask<ProductsDownloader.DownloaderP
             }
         }
         return null;
+    }
+
+    private int parseAndPrintProducts(JSONObject jsonObj) throws JSONException {
+        JSONArray jsonProducts = jsonObj.getJSONArray("data");
+        Product[] products = Product.parse(jsonProducts);
+
+        StringBuilder sb = new StringBuilder();
+        for (Product p : products) {
+            sb.append(p.getShortDescription() + "\n");
+        }
+        publishProgress(new DownloaderParamsProgress("Parsed " + products.length + " products", sb.toString()));
+        return products.length;
     }
 
     @Override
