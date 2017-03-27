@@ -129,7 +129,7 @@ var openfoodapi = openfoodapi || {
         }
         //this.host = host || "https://openfood-staging.herokuapp.com";
         this.host = host || "https://www.openfood.ch";
-        this.version = version || 2;
+        this.version = version || 3;
         this.api_key = api_key;
     };
 
@@ -165,4 +165,3 @@ var openfoodapi = openfoodapi || {
 
     global.Endpoint = Endpoint;
 })(openfoodapi);
-

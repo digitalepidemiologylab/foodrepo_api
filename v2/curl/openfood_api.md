@@ -2,22 +2,22 @@
 
 ### Product by ID
 
-curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products/2663" -H 'Authorization: Token token="[API_KEY]"'
+curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "https://www.openfood.ch/api/v3/products/2663" -H 'Authorization: Token token="[API_KEY]"'
 
 
 ### Includes
 
-curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products?includes[]=images&includes[]=nutrients" -H 'Authorization: Token token="[API_KEY]"'
+curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "https://www.openfood.ch/api/v3/products?includes[]=images&includes[]=nutrients" -H 'Authorization: Token token="[API_KEY]"'
 
 
 ### Barcodes
 
-curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products?barcodes[]=7614500034033&barcodes[]=7622210418807" -H 'Authorization: Token token="[API_KEY]"'
+curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "https://www.openfood.ch/api/v3/products?barcodes[]=7614500034033&barcodes[]=7622210418807" -H 'Authorization: Token token="[API_KEY]"'
 
 
 ### Search
 
-curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' "http://localhost:3000/api/v3/products/_search" -H 'Content-Type: application/json' -H 'Authorization: Token token="[API_KEY]"' -d'
+curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' "https://www.openfood.ch/api/v3/products/_search" -H 'Content-Type: application/json' -H 'Authorization: Token token="[API_KEY]"' -d'
 { "_source": { "includes": [ "id", "barcode","status", "quantity" ] },
         "query": { "range": { "quantity": { "gte": 50, "lte": 650 } } },
         "sort": { "quantity": { "order": "asc" }}

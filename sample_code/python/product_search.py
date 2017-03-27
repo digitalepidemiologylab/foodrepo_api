@@ -7,7 +7,7 @@ curl -X POST --header "Content-Type: application/vnd.api+json" --header "Accept:
       \"name_translations.en\" : \"toblerone*\"
     }
   }
-}" "https://www.openfood.ch/api/v2/products/_search"
+}" "https://www.openfood.ch/api/v3/products/_search"
 
 USAGE:
 $ python product_search.py
@@ -19,7 +19,7 @@ https://github.com/salathegroup/openfood_api/blob/master/sample_code/curl/openfo
 
 import requests
 
-BASE_URL='https://www.openfood.ch/api/v2'
+BASE_URL='https://www.openfood.ch/api/v3'
 API_KEY='API_KEY'
 
 url = BASE_URL + '/products/_search'
@@ -33,9 +33,7 @@ query =   {
 }
 
 headers = {
-  'Authorization': "Token token={}".format(API_KEY),
-  'Accept': 'application/vnd.api+json',
-  'Content-Type': 'application/vnd.api+json'
+  'Authorization': "Token token={}".format(API_KEY)
 }
 
 r = requests.post(url, json=query, headers=headers)

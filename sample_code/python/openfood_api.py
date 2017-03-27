@@ -9,7 +9,7 @@ $ python openfood_api.py
 
 import requests
 
-BASE_URL='https://www.openfood.ch/api/v2'
+BASE_URL='https://www.openfood.ch/api/v3'
 API_KEY='secret'
 
 url = BASE_URL + '/products'
@@ -20,9 +20,7 @@ query = {
 }
 
 headers = {
-  'Authorization': "Token token={}".format(API_KEY),
-  'Accept': 'application/vnd.api+json',
-  'Content-Type': 'application/vnd.api+json'
+  'Authorization': "Token token={}".format(API_KEY)
 }
 
 r = requests.get(url, params=query, headers=headers)
