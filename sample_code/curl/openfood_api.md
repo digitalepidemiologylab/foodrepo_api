@@ -1,27 +1,60 @@
-## JSON API Endpoints
+## OpenFood API Endpoints
 
-## Products#Index
+## OpenFood Product Model
 
-### Retrieve a Products Listing
+### Fields
+
+TBD
+
+### The updated_at field
+
+The **updated_at** field in the Products Elasticsearch index is the highest date of the products, images or product_nutrients collections, for a given product.
+
+
+## Retrieve a Products Listing: products#index
 
 Returns a list of products with default paging (50 products per page). It will return paging links and an index of the Nutrient and Image includes, but not the data.
 
+```bash
+curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"'
 ```
-curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "https://www.openfood.ch/api/v2/products/972" -H 'Authorization: Token token="[API_KEY]"'
-```
+
+[API_KEY]
 
 ### With Includes
 
+It is possible to add the public urls for images associated with the products, as well as detailed nutrient information. To do this, pass a **nutrients[]=** parameter with the request. Examples are below.
+
 #### Images
 
-```
-curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "https://www.openfood.ch/api/v2/products?include=images" -H 'Authorization: Token token="[API_KEY]"'
+```bash
+curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products?includes[]=images" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"'
 ```
 
 #### Nutrients
 
+```bash
+curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products?includes[]=nutrients'" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"'
 ```
-curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "https://www.openfood.ch/api/v2/products?include=nutrients'" -H 'Authorization: Token token="[API_KEY]"'
+
+#### Both Images and Nutrients
+
+```bash
+curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products?includes[]=nutrients&includes[]=images'" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"'
+```
+
+### Search by barcodes
+
+It is possible to filter the results of **products#index** by barcodes. Filtering barcodes are passed in the array format.
+
+```bash
+curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products?barcodes[]=4104420034563&barcodes[]=4104420033764'" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"'
+```
+
+This filter may be combined with the **includes** feature.
+
+```bash
+curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products?barcodes[]=4104420034563&barcodes[]=4104420033764&includes[]=nutrients&includes[]=images'" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"'
 ```
 
 #### Paging
@@ -29,71 +62,128 @@ curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vn
 ##### Set Page Size
 
 ```
-curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "https://www.openfood.ch/api/v2/products?page[size]=3" -H 'Authorization: Token token="[API_KEY]"'
+curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products?page[size]=50" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"'
 ```
 
 #### Access a specific page
 
 ```
-curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "https://www.openfood.ch/api/v2/products?page[size]=20&page[number]=5" -H 'Authorization: Token token="[API_KEY]"'
+curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products?page[size]=20&page[number]=5" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"'
 ```
 
 
-##### Using Page Links
+## Retrieve a single Product: products#show
 
-The JSON-API specification describes the inclusion of paging links at the bottom of a response. For example:
+### Call by Product ID
 
-```
-"links": {
-    "self": "https://www.openfood.ch/api/v2/products?page%5Bnumber%5D=1&page%5Bsize%5D=3",
-    "next": "https://www.openfood.ch/api/v2/products?page%5Bnumber%5D=2&page%5Bsize%5D=3",
-    "last": "https://www.openfood.ch/api/v2/products?page%5Bnumber%5D=4890&page%5Bsize%5D=3"
-  }
-```
-
-Using Curl as an example
+Add the product ID to the url.
 
 ```
-curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET  "https://www.openfood.ch/api/v2/products?page[number]=2&page[size]=3" -H 'Authorization: Token token="[API_KEY]"'
+curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products/972" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"'
 ```
 
-### Retrieve a single Product
+#### With Includes
 
-#### Call by ID
-
-Add the product ID to the url
+The Includes feature functions the same way as for the **products#index** endpoint.
 
 ```
-curl -i -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "https://www.openfood.ch/api/v2/products/972" -H 'Authorization: Token token="[API_KEY]"'
+curl -i -g -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' -X GET "http://localhost:3000/api/v3/products/972?includes[]=nutrients&includes[]=images'" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"'
 ```
 
-## Nutrients
+## Search using Elasticsearch Query DSL
 
-The Nutrients endpoint does not contain paging features.
+Full search ability is available against the **_search** endpoint. This endpoint provides access to all OpenFood Product data using the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html).
 
+### Limiting Fields
 
-## Serch by barcodes
+By default, the results from the **_search** endpoint will include all fields, included the **images** and **nutrients** nested endpoints. To limit fields, use the **includes** parameter against **_source**.
+
+### Filtering
+
+The **query** parameter is frequently used in searched. Full details are described in the [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html).
+
+### Sorting
+
+The sort order can be specified using the **sort** feature.
+
+### Example Queries
+
+#### Limit fields, search and sort
+
 
 ```bash
-curl -X GET --header "Accept: application/json" --header "Authorization: Token token=[API_KEY]" "https://www.openfood.ch/api/v2/products?barcodes=4104420034563%2C4104420033764"
+curl -X POST http://localhost:3000/api/v3/products/_search -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"' -d'
+{ "_source": { "includes": [ "id", "barcode","status", "quantity" ] },
+        "query": { "range": { "quantity": { "gte": 50, "lte": 650 } } },
+        "sort": { "quantity": { "order": "asc" }}
+      }
+'
 ```
 
-#### Term search against products
+#### Search on Nested fields
 
 ```bash
-curl -X POST 'https://www.openfood.ch/api/v2/products/_search?pretty' -H 'Content-Type: application/json' -d'
-{
+curl -X POST "http://localhost:3000/api/v3/products/_search" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"' -d'
+{ "_source": { "includes": [ "id", "barcode","status", "quantity","nutrients" ] },
   "query": {
-    "term" : { "status" : "draft" }
+    "bool": {
+      "must": [
+        { "match": { "nutrients.name_fr": "Énergie" } },
+        { "match": { "nutrients.per_hundred": "242.0" } }
+      ]
+    }
   }
 }
 '
 ```
 
-#### Terms search against products
+#### Retrieve ID and barcode for a specific barcode
 
 ```bash
-curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' "https://www.openfood.ch/api/v2/products/_search?pretty" -H 'Content-Type: application/json' -H 'Authorization: Token token="[API_KEY]"' -d'
+curl -X POST "http://localhost:3000/api/v3/products/_search" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"' -d'
+{ "_source": { "includes": [ "id", "barcode","name_translations" ] },
+  "query": { "term": { "barcode": "7611654457411" } }
+}
+'
+```
+
+#### Wildcard query
+
+ID and barcode for a wildcard barcode query
+
+```bash
+curl -X POST "http://localhost:3000/api/v3/products/_search" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"' -d'
+{ "_source": { "includes": [ "id", "barcode","name_translations" ] },
+  "query": { "wildcard": { "barcode": "7611*" } }
+}
+'
+```
+
+#### Multiple field query
+
+ID, barcode, status, unit and quantity for a quantity > 600 and unit of ml, ordered by quantity
+
+
+```bash
+curl -X POST "http://localhost:3000/api/v3/products/_search" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"' -d'
+{ "_source": { "includes": [ "id", "barcode","status", "quantity", "unit" ] },
+  "query": {
+    "bool": {
+      "must": [
+        { "term": { "unit": "g" }},
+        { "range": { "quantity": { "gte": 550.0, "lte": 650.0 } } }
+      ]
+    }
+  }
+}
+'
+```
+
+
+#### Exact match search against products
+
+```bash
+curl -X POST "http://localhost:3000/api/v3/products/_search?pretty" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"' -d'
 {
     "_source": true,
     "query": {
@@ -110,12 +200,12 @@ curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/
 #### Wildcard search against product names
 
 ```bash
-curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' "https://www.openfood.ch/api/v2/products/_search?pretty" -H 'Content-Type: application/json' -H 'Authorization: Token token="[API_KEY]"' -d'
+curl -X POST "http://localhost:3000/api/v3/products/_search?pretty" -H 'Authorization: Token token="43c97b456d68efaa47e5026a80e7a61c"' -d'
 {
   "_source": true,
   "query": {
     "wildcard": {
-      "name_translations.en" : "toblerone*"
+      "name_translations.en" : "Toble*"
     }
   }
 }
@@ -129,7 +219,7 @@ Find all 'coop' products (that are not also 'naturaplan' products) that were add
 ```bash
 curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' "https://www.openfood.ch/api/v2/nutrients/_search?pretty" -H 'Content-Type: application/json' -H 'Authorization: Token token="[API_KEY]"' -d'
 {
-  "query": { 
+  "query": {
     "bool": {
       "must_not": [
         { "match": { "name_translations.de": "naturaplan" }}
@@ -144,20 +234,4 @@ curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/
     }
   }
 }
-```
-
-#### Terms search against nutrients
-
-```bash
-curl -X POST -H "Accept: application/vnd.api+json" -H 'Content-Type:application/vnd.api+json' "https://www.openfood.ch/api/v2/nutrients/_search?pretty" -H 'Content-Type: application/json' -H 'Authorization: Token token="[API_KEY]"' -d'
-{
-    "query": {
-        "constant_score" : {
-            "filter" : {
-                "terms" : { "unit" : ["µg"]}
-            }
-        }
-    }
-}
-'
 ```

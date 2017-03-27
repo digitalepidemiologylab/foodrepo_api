@@ -17,18 +17,13 @@ All content, including images, is licensed under [CC BY 4.0](https://creativecom
 
 ## Current Version
 
-The current version of the API is v3. By default, all requests receive the v3 version of the API.
-
-The v2 API still accessible but is depreciated and will be retired. Until then, the documentation for v2 may be found [here](v2/README.md).
-
+By default, all requests receive the v2 version of the API.
 
 ## Schema
 
-The products [schema](schema/schema.md) includes nested objects, and is the same format from all products endpoints.
-
 All API access is over HTTPS, and accessed from ```https://openfood.ch```. All data is sent and received as JSON.
 
-The OpenFood API is fully described in the Swagger Documentation. The search functionality found at the **_search** endpoint is provided through an ElasticSearch cluster. The search endpoints use [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html)
+The OpenFood API is based on the [JSON API Specification](http://jsonapi.org/) for resources access, while the search functionality is provided through an ElasticSearch cluster. The search endpoints use ElasticSearch query language.
 
 ## Authentication
 
