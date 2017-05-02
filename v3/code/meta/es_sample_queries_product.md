@@ -34,9 +34,9 @@
   "query": {
     "query_string": {
       "fields" : [
-        "_all_translations.de"
+        "_all_text_translations.de"
       ],
-      "query" : "Grün"
+      "query" : "Grüner"
     }
   }
 }
@@ -73,10 +73,10 @@
   "query": {
     "bool": {
       "must": [
-        { "match": { "name_translations.de": "coop" }}
+        { "match": { "name_translations.de.raw": "coop" }}
       ],
       "must_not": [
-        { "match": { "name_translations.de": "naturaplan" }}
+        { "match": { "name_translations.de.raw": "naturaplan" }}
       ],
       "filter": [
         { "range": { "created_at": { "gte": "2016-01-01" }}},

@@ -20,6 +20,16 @@ Each request made against the OpenFood API must include your API key. The key mu
 Authorization: Token token="API_KEY"
 ```
 
+#### How to get a compressed response
+
+If you are using our API a lot, that's great! But telling our endpoints that you can accept a compressed response could reduce the response payload size by a factor of 10! That translates to snappier apps for your users and cheaper bandwidth costs for everyone. To enable compression, simply include the following header in your request:
+
+```
+Accept-Encoding: gzip
+```
+
+<small>Note: Depending on the coding language or framework you are using to consume our API, you may need to do extra work to decompress the response.</small>
+
 ## Endpoints
 
 Once you have an API key, check out our <b>[Swagger Documentation page](https://www.openfood.ch/api-docs/swaggers/v3)</b> which describes all our endpoints and their possible responses. You can perform live requests against our database, see exactly how to format your requests, and get a feel for what our API has to offer.
