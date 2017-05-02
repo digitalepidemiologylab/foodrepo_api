@@ -1,23 +1,16 @@
-![OpenFood Logo](images/OpenFood.png?raw=true "OpenFood")
+![OpenFood Logo](/images/OpenFood.png?raw=true "OpenFood")
 
-## OpenFood API
+## OpenFood API v2
+
+## Deprecation notice
+
+API version 2 is now deprecated. Please consider using [version 3 of our API](/v3/README.md).
 
 ## Overview
 
 At OpenFood we believe in open data delivered using open source technologies and open web standards. The OpenFood API allows full access to all of the content available in the OpenFood database, including images.
 
-## Newsletter
-
-Stay informed about OpenFood, and sign up for our [newsletter](https://docs.google.com/forms/d/e/1FAIpQLScYQg34Lj7du2Z3Rwqa02fmG84jD0Y1YAbE975uphiZLBFSvQ/viewform).
-
-## License
-
-All content, including images, is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-
-
-## Current Version
-
-By default, all requests receive the v2 version of the API.
+For general information about our data license, how to contribute, and more, see [here](/README.md).
 
 ## Schema
 
@@ -45,7 +38,7 @@ All traffic accessing OpenFood must travel across HTTPS.
 
 ## Swagger Documentation
 
-The API is documented via the [OpenAPI Specification](https://www.openapis.org/) via a [Swagger](http://swagger.io/) interface. This may be found on the [documentation page](https://www.openfood.ch/api-docs?locale=en).
+The API is documented via the [OpenAPI Specification](https://www.openapis.org/) using a [Swagger](http://swagger.io/) interface. This may be found on our website's [API v2 documentation page](https://www.openfood.ch/api-docs/swaggers/v2).
 
 The documentation may be freely viewed without an account. Using your developer API Key, you can run live queries against the API and view the generated curl statements.
 
@@ -63,22 +56,8 @@ Examples of search can be found [here](sample_code/curl/openfood_api.md)
 
 Example code for various languages may be found in this repo. Replace [API Key] with your own key where necessary. We currently support examples for
 
-  - [Curl](sample_code/curl/openfood_api.md)
-  - [JavaScript](sample_code/js/index.html)
-  - [Python](sample_code/python/openfood_api.py)
-  - [Ruby](sample_code/ruby/openfood_api.rb)
-  - [Android](sample_code/android/)
-
-## Issues Log
-
-Please log any issues, enhancement requests or code questions in the [Issues log](https://github.com/salathegroup/openfood_api/issues).
-
-
-## Slack Channel
-
-You can also contact us and other community developers via the [Slack channel](https://openfoodch.slack.com).
-
-
-## Contributing
-
-We welcome any suggestions or feature requests, please log an issue. Changes to this documentation or sample code is also welcome ... just make a pull request.
+  - [Curl](code/curl/openfood_api.md)
+  - [JavaScript](code/js/index.html)
+  - [Python](code/python/openfood_api.py)
+  - [Ruby](code/ruby/openfood_api.rb)
+  - [Android](code/android/)

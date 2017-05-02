@@ -1,89 +1,33 @@
 ![OpenFood Logo](images/OpenFood.png?raw=true "OpenFood")
 
-## OpenFood API
+# OpenFood API
 
 ## Overview
 
 At OpenFood we believe in open data delivered using open source technologies and open web standards. The OpenFood API allows full access to all of the content available in the OpenFood database, including images.
 
-## Newsletter
+## Developer Newsletter
 
-Stay informed about OpenFood, and sign up for our [newsletter](https://docs.google.com/forms/d/e/1FAIpQLScYQg34Lj7du2Z3Rwqa02fmG84jD0Y1YAbE975uphiZLBFSvQ/viewform).
+Stay informed about developer-facing OpenFood news, and sign up for our [dev newsletter](https://docs.google.com/forms/d/e/1FAIpQLScYQg34Lj7du2Z3Rwqa02fmG84jD0Y1YAbE975uphiZLBFSvQ/viewform).
+
+## Versions
+
+The current version of the API is [**v3**](/v3/README.md). Version-specific documentation:
+ * [v3](/v3/README.md) _(Current)_
+ * [v2](/v2/README.md) _(Deprecated, but still accessible for now)_
 
 ## License
 
 All content, including images, is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-
-## Current Version
-
-The current version of the API is v3. By default, all requests receive the v3 version of the API.
-
-The v2 API still accessible but is depreciated and will be retired. Until then, the documentation for v2 may be found [here](v2/README.md).
-
-
-## Schema
-
-The products [schema](schema/schema.md) includes nested objects, and is the same format from all products endpoints.
-
-All API access is over HTTPS, and accessed from ```https://openfood.ch```. All data is sent and received as JSON.
-
-The OpenFood API is fully described in the Swagger Documentation. The search functionality found at the **_search** endpoint is provided through an ElasticSearch cluster. The search endpoints use [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html)
-
-## Authentication
-
-### Developer API Key
-
-Sign up for a developer account on [OpenFood](https://www.openfood.ch) and visit the *API Keys* page. This key must be passed with all requests, in the header.
-
-You may request multiple API keys, and they may be deactivated or deleted at anytime by you. Once a key is deactivated or deleted it cannot be reused.
-
-### Provide the API key in the Request headers
-
-Each request made against the OpenFood API must include your API key. The key must be passed against a Token header, like:
-
-```
-Authorization: Token token="[API_KEY]"
-```
-
-All traffic accessing OpenFood must travel across HTTPS.
-
-## Swagger Documentation
-
-The API is documented via the [OpenAPI Specification](https://www.openapis.org/) via a [Swagger](http://swagger.io/) interface. This may be found on the [documentation page](https://www.openfood.ch/api-docs?locale=en).
-
-The documentation may be freely viewed without an account. Using your developer API Key, you can run live queries against the API and view the generated curl statements.
-
-Endpoints examples can be found [here](sample_code/curl/openfood_api.md)
-
-
-## Search Endpoints
-
-Search endpoints, which contain the **_search** string are served using ElasticSearch. As such the full [ElasticSearch Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html) may be applied to OpenFood data.
-
-Examples of search can be found [here](sample_code/curl/openfood_api.md)
-
-
-## Example Code
-
-Example code for various languages may be found in this repo. Replace [API Key] with your own key where necessary. We currently support examples for
-
-  - [Curl](sample_code/curl/openfood_api.md)
-  - [JavaScript](sample_code/js/index.html)
-  - [Python](sample_code/python/openfood_api.py)
-  - [Ruby](sample_code/ruby/openfood_api.rb)
-  - [Android](sample_code/android/)
-
 ## Issues Log
 
 Please log any issues, enhancement requests or code questions in the [Issues log](https://github.com/salathegroup/openfood_api/issues).
-
 
 ## Slack Channel
 
 You can also contact us and other community developers via the [Slack channel](https://openfoodch.slack.com).
 
-
 ## Contributing
 
-We welcome any suggestions or feature requests, please log an issue. Changes to this documentation or sample code is also welcome ... just make a pull request.
+We welcome any suggestions or feature requests, please log an issue. Changes to this documentation or sample code is also welcome; just make a pull request!
