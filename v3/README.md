@@ -50,4 +50,11 @@ The **_search** endpoint's functionality is provided through an ElasticSearch cl
 
 ## Example Code
 
-Example code for various languages may be found in this repo. Replace `API_KEY` with your own key where necessary. We currently don't have any examples written for API v3, but our [API v2 examples](/v2/code) should be a good starting point. Check back soon!
+Example code for various languages may be found in this repo. Replace `API_KEY` with your own key where necessary.
+
+* [Curl](code/curl/openfood_api.md)
+* [JavaScript](code/javascript/openfood_api.md)
+* [Python](code/python/openfood_api.md)
+* [Ruby](code/ruby/openfood_api.md)
+
+<small>We welcome any and all suggestions for improving and adding to the above examples via pull request.</small>
