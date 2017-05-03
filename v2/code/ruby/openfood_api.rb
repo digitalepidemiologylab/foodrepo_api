@@ -15,7 +15,7 @@ url = "#{BASE_URL}/products"
 
 query = {
   "page[number]" => "2",
-  "size[size]" => "5"
+  "page[size]" => "5"
 }
 
 headers = {
