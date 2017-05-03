@@ -11,23 +11,21 @@
 """
 Sample Python 2.7 code for a call against OpenFood API v3 product by ID.
 
-Replace 'secret' with your API Key
-
 USAGE:
 $ python openfood_api.py
 """
 import requests
 
 BASE_URL='https://www.openfood.ch/api/v3'
-API_KEY='secret'
+KEY='API_KEY'
 PRODUCT_ID=2663
 ENDPOINT='/products/{}'.format(PRODUCT_ID)
 
 url = BASE_URL + ENDPOINT
 
 headers = {
-  'Authorization': 'Token token=' + API_KEY,
-  'Accept': 'application/vnd.api+json',
+  'Authorization': 'Token token=' + KEY,
+  'Accept': 'application/json',
   'Content-Type': 'application/vnd.api+json',
   'Accept-Encoding': 'gzip,deflate'
 }
@@ -47,27 +45,25 @@ Supports query parameters for paging, filtering by barcode, and excluding fields
 """
 Sample Python 2.7 code for a call against OpenFood API v3 products listing, with paging.
 
-Replace 'secret' with your API Key
-
 USAGE:
 $ python openfood_api.py
 """
 import requests
 
 BASE_URL='https://www.openfood.ch/api/v3'
-API_KEY='secret'
+KEY='API_KEY'
 ENDPOINT='/products'
 
 url = BASE_URL + ENDPOINT
 
 query = {
-  "page[number]": "2",
-  "page[size]": "5"
+  'page[number]': 2,
+  'page[size]': 5
 }
 
 headers = {
-  'Authorization': 'Token token=' + API_KEY,
-  'Accept': 'application/vnd.api+json',
+  'Authorization': 'Token token=' + KEY,
+  'Accept': 'application/json',
   'Content-Type': 'application/vnd.api+json',
   'Accept-Encoding': 'gzip,deflate'
 }
@@ -88,8 +84,6 @@ Advanced search using ElasticSearch Query DSL in the request data. See [the 'Sea
 """
 Sample Python 2.7 code for a call against the OpenFood API v3 product _search
 
-Replace 'secret' with your API Key
-
 USAGE:
 $ python openfood_api.py
 
@@ -99,7 +93,7 @@ https://github.com/salathegroup/openfood_api/blob/master/v3/README.md#search
 import requests
 
 BASE_URL='https://www.openfood.ch/api/v3'
-API_KEY='secret'
+KEY='API_KEY'
 ENDPOINT='/products/_search'
 
 url = BASE_URL + ENDPOINT
@@ -113,9 +107,10 @@ query = {
 }
 
 headers = {
-  'Authorization': "Token token=" + API_KEY,
-  'Accept': 'application/vnd.api+json',
-  'Content-Type': 'application/vnd.api+json'
+  'Authorization': "Token token=" + KEY,
+  'Accept': 'application/json',
+  'Content-Type': 'application/vnd.api+json',
+  'Accept-Encoding': 'gzip,deflate'
 }
 
 r = requests.post(url, json=query, headers=headers)
@@ -126,5 +121,4 @@ if r.status_code == 200:
     print 'First few products...'
     for hit in results['hits']['hits']:
         print '  ' + hit['_source']['display_name_translations']['en']
-
 ```
