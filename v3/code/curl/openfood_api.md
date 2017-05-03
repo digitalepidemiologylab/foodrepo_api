@@ -26,6 +26,7 @@ $ curl -X GET "https://www.openfood.ch/api/v3/products?barcodes=7610046125730" -
 ```
 
 #### Search for Products ([Try it!](https://www.openfood.ch/api-docs/swaggers/v3#!/default/searchProducts))
+
 Advanced search using ElasticSearch Query DSL in the request data. See [the 'Search' section of the main API v3 README](/v3/README.md#search) for in depth explanations and example queries.
 
 ```bash
