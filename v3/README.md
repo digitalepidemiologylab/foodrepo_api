@@ -20,16 +20,6 @@ Each request made against the OpenFood API must include your API key. The key mu
 Authorization: Token token="API_KEY"
 ```
 
-#### How to get a compressed response
-
-If you are using our API a lot, that's great! But telling our endpoints that you can accept a compressed response could reduce the response payload size by a factor of 10! That translates to snappier apps for your users and cheaper bandwidth costs for everyone. To enable compression, simply include the following header in your request:
-
-```
-Accept-Encoding: gzip
-```
-
-<small>Note: Depending on the coding language or framework you are using to consume our API, you may need to do extra work to decompress the response.</small>
-
 ## Endpoints
 
 Once you have an API key, check out our <b>[Swagger Documentation page](https://www.openfood.ch/api-docs/swaggers/v3)</b> which describes all our endpoints and their possible responses. You can perform live requests against our database, see exactly how to format your requests, and get a feel for what our API has to offer.
@@ -50,4 +40,25 @@ The **_search** endpoint's functionality is provided through an ElasticSearch cl
 
 ## Example Code
 
-Example code for various languages may be found in this repo. Replace `API_KEY` with your own key where necessary. We currently don't have any examples written for API v3, but our [API v2 examples](/v2/code) should be a good starting point. Check back soon!
+Example code for various languages may be found in this repo. Replace `API_KEY` with your own key where necessary.
+
+* [Curl](code/curl/openfood_api.md)
+* [JavaScript](code/javascript/)
+* [Python](code/python/openfood_api.md)
+* [Ruby](code/ruby/openfood_api.md)
+
+## Misc
+
+#### Compressed responses
+
+If you are using our API a lot, that's great! But telling our endpoints that you can accept a compressed response could reduce the response payload size by a factor of 10! That translates to snappier apps for your users and cheaper bandwidth costs for everyone. To enable compression, simply include the following header in your request:
+
+```
+Accept-Encoding: gzip
+```
+
+<small>Note: Depending on the coding language or framework you are using to consume our API, you may need to do extra work to decompress the response.</small>
+
+#### Contact and Contribution
+
+We welcome any and all suggestions for improving and adding to the above documentation via Pull Request or [Issue log](https://github.com/salathegroup/openfood_api/issues).
