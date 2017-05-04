@@ -61,4 +61,4 @@ Accept-Encoding: gzip
 
 #### Contact and Contribution
 
-We welcome any and all suggestions for improving and adding to the above examples via Pull Request or [Issue log](https://github.com/salathegroup/openfood_api/issues).
+We welcome any and all suggestions for improving and adding to the above documentation via Pull Request or [Issue log](https://github.com/salathegroup/openfood_api/issues).
