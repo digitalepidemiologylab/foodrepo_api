@@ -79,8 +79,10 @@
         { "match": { "name_translations.de.raw": "naturaplan" }}
       ],
       "filter": [
-        { "range": { "created_at": { "gte": "2016-01-01" }}},
-        { "range": { "created_at": { "lt": "2017-01-01" }}}
+        { "range": { "created_at": {
+          "gte": "2016-01-01",
+          "lt": "2017-01-01"
+        }}}
       ]
     }
   }
