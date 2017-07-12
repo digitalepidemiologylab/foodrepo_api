@@ -71,9 +71,12 @@ headers = {
 r = requests.get(url, params=query, headers=headers)
 print 'Status: ' + str(r.status_code)
 if r.status_code == 200:
-    print 'Barcodes on this page:'
-    for product in r.json()['data']:
-      print '  ' + product['barcode']
+  print 'Page loaded successfully.'
+  print 'Generated in ' + str(r.json().get('meta', {}).get('generated_in', -1)) + ' milliseconds.'
+  print 'Next page\'s URL is: ' + r.json()['links'].get('next', 'UNKNOWN')
+  print 'Barcodes on this page:'
+  for product in r.json()['data']:
+    print '  ' + product['barcode']
 ```
 
 #### Search for Products ([Try it!](https://www.openfood.ch/api-docs/swaggers/v3#!/default/searchProducts))
