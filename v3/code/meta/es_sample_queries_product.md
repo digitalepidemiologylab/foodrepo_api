@@ -105,3 +105,28 @@
   }
 }
 ```
+
+##### Find the name and id of all products with an origin specified in at least one language, sorted by `id`.
+
+```json
+{
+  "_source": {
+    "includes": [
+	    "id",
+      "display_name_translations.fr"
+    ]
+  },
+  "query": {
+    "bool": {
+      "should" : [
+        {"regexp":{"origin_translations.en": ".*"}},
+        {"regexp":{"origin_translations.fr": ".*"}},
+        {"regexp":{"origin_translations.de": ".*"}},
+        {"regexp":{"origin_translations.it": ".*"}}
+      ],
+      "minimum_should_match" : 1
+    }
+  },
+  "sort": "id"
+}
+```
