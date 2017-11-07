@@ -119,10 +119,10 @@
   "query": {
     "bool": {
       "should" : [
-        {"regexp":{"origin_translations.en": ".*"}},
-        {"regexp":{"origin_translations.fr": ".*"}},
-        {"regexp":{"origin_translations.de": ".*"}},
-        {"regexp":{"origin_translations.it": ".*"}}
+        {"regexp":{"origin_translations.en.raw": ".*"}},
+        {"regexp":{"origin_translations.fr.raw": ".*"}},
+        {"regexp":{"origin_translations.de.raw": ".*"}},
+        {"regexp":{"origin_translations.it.raw": ".*"}}
       ],
       "minimum_should_match" : 1
     }
