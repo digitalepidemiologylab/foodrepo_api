@@ -112,7 +112,7 @@
 {
   "_source": {
     "includes": [
-	    "id",
+      "id",
       "display_name_translations.fr"
     ]
   },

@@ -1,0 +1,23 @@
+body {
+  font-family: sans-serif;
+  padding: 0 30px 0 30px;
+}
+
+#api_key {
+  font-family: monospace;
+  width: 300px;
+  margin-left: 1em;
+}
+
+#error {
+  color: red;
+}
+
+#detail, #search {
+  max-height: 200px;
+  overflow: scroll;
+}
+
+#results {
+  display: none;
+}
