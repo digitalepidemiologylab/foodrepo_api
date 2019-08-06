@@ -1,14 +1,14 @@
-![OpenFood Logo](images/OpenFood.png?raw=true "OpenFood")
+![The Open Food Repo Logo](images/logo-foodrepo.svg?sanitize=true "Food Repo")
 
-# OpenFood API
+# Food Repo API
 
 ## Overview
 
-At OpenFood we believe in open data delivered using open source technologies and open web standards. The OpenFood API allows full access to all of the content available in the OpenFood database, including images.
+At Food Repo we believe in open data delivered using open source technologies and open web standards. The Food Repo API allows full access to all of the content available in the Food Repo database, including images.
 
 ## Developer Newsletter
 
-Stay informed about developer-facing OpenFood news, and sign up for our [dev newsletter](https://docs.google.com/forms/d/e/1FAIpQLScYQg34Lj7du2Z3Rwqa02fmG84jD0Y1YAbE975uphiZLBFSvQ/viewform).
+Stay informed about developer-facing Food Repo news, and sign up for our [dev newsletter](https://docs.google.com/forms/d/e/1FAIpQLScYQg34Lj7du2Z3Rwqa02fmG84jD0Y1YAbE975uphiZLBFSvQ/viewform).
 
 ## Versions
 
@@ -22,7 +22,7 @@ All content, including images, is licensed under [CC BY 4.0](https://creativecom
 
 ## Issues Log
 
-Please log any issues, enhancement requests or code questions in the [Issues log](https://github.com/salathegroup/openfood_api/issues).
+Please log any issues, enhancement requests or code questions in the [Issues log](https://github.com/salathegroup/foodrepo_api/issues).
 
 ## Slack Channel
 

@@ -1,22 +1,24 @@
+![The Open Food Repo Logo](../../../images/logo-foodrepo.svg?sanitize=true "Food Repo")
+
 # OpenFood API version 3
 
 ## Python Example Code
 
 ### Product Endpoints
 
-#### Get Product by ID ([Try it!](https://www.openfood.ch/api-docs/swaggers/v3#!/default/findProductById))
+#### Get Product by ID ([Try it!](https://www.foodrepo.org/api-docs/swaggers/v3#!/default/findProductById))
 
 * Get a product whose ID you know (e.g. `2663`)
 ```python
 """
-Sample Python 2.7 code for a call against OpenFood API v3 product by ID.
+Sample Python 2.7 code for a call against Food Repo API v3 product by ID.
 
 USAGE:
-$ python openfood_api.py
+$ python product.py
 """
 import requests
 
-BASE_URL='https://www.openfood.ch/api/v3'
+BASE_URL='https://www.foodrepo.org/api/v3'
 KEY='API_KEY'
 PRODUCT_ID=2663
 ENDPOINT='/products/{}'.format(PRODUCT_ID)
@@ -36,21 +38,21 @@ if r.status_code == 200:
     print r.json()
 ```
 
-#### List of Products ([Try it!](https://www.openfood.ch/api-docs/swaggers/v3#!/default/listProducts))
+#### List of Products ([Try it!](https://www.foodrepo.org/api-docs/swaggers/v3#!/default/listProducts))
 
 Supports query parameters for paging, filtering by barcode, and excluding fields that you may not interested in (such as `nutrients` or `ingredients_translations`).
 
 * Get page 2 of all products, with 5 products per page
 ```python
 """
-Sample Python 2.7 code for a call against OpenFood API v3 products listing, with paging.
+Sample Python 2.7 code for a call against Food Repo API v3 products listing, with paging.
 
 USAGE:
-$ python openfood_api.py
+$ python product_listing.py
 """
 import requests
 
-BASE_URL='https://www.openfood.ch/api/v3'
+BASE_URL='https://www.foodrepo.org/api/v3'
 KEY='API_KEY'
 ENDPOINT='/products'
 
@@ -79,7 +81,7 @@ if r.status_code == 200:
     print '  ' + product['barcode']
 ```
 
-#### Search for Products ([Try it!](https://www.openfood.ch/api-docs/swaggers/v3#!/default/searchProducts))
+#### Search for Products ([Try it!](https://www.foodrepo.org/api-docs/swaggers/v3#!/default/searchProducts))
 
 Advanced search using ElasticSearch Query DSL in the request data. See [the 'Search' section of the main API v3 README](/v3/README.md#search) for in depth explanations and example queries.
 
@@ -88,14 +90,14 @@ Advanced search using ElasticSearch Query DSL in the request data. See [the 'Sea
 Sample Python 2.7 code for a call against the OpenFood API v3 product _search
 
 USAGE:
-$ python openfood_api.py
+$ python product_search.py
 
 MORE INFO:
-https://github.com/salathegroup/openfood_api/blob/master/v3/README.md#search
+https://github.com/salathegroup/foodrepo_api/blob/master/v3/README.md#search
 """
 import requests
 
-BASE_URL='https://www.openfood.ch/api/v3'
+BASE_URL='https://www.foodrepo.org /api/v3'
 KEY='API_KEY'
 ENDPOINT='/products/_search'
 
