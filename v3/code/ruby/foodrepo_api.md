@@ -1,3 +1,5 @@
+![The Open Food Repo Logo](../../../images/logo-foodrepo.svg?sanitize=true "Food Repo")
+
 # OpenFood API version 3
 
 ## Ruby Example Code

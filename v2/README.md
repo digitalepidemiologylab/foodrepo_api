@@ -1,4 +1,4 @@
-![The Open Food Repo Logo](../images/logo-foodrepo.svg?raw=true "Food Repo")
+![The Open Food Repo Logo](../images/logo-foodrepo.svg?sanitize=true "Food Repo")
 
 ## Food Repo API v2
 
