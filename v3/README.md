@@ -1,6 +1,6 @@
 ![OpenFood Logo](../images/logo-foodrepo.svg?sanitize=true "FoodRepo")
 
-# Food Repo API v3
+# The Open Food Repo API v3
 
 ## Overview
 

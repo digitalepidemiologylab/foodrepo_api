@@ -1,6 +1,6 @@
 ![The Open Food Repo Logo](images/logo-foodrepo.svg?sanitize=true "Food Repo")
 
-# Food Repo API
+# The Open Food Repo API
 
 ## Overview
 
@@ -14,7 +14,6 @@ Stay informed about developer-facing Food Repo news, and sign up for our [dev ne
 
 The current version of the API is [**v3**](/v3/README.md). Version-specific documentation:
  * [v3](/v3/README.md) _(Current)_
- * [v2](/v2/README.md) _(Deprecated, but still accessible for now)_
 
 ## License
 
