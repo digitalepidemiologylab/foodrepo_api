@@ -43,7 +43,7 @@ Any endpoint that returns a Product in its JSON response.
   * Description: The unit used by `portion_quantity` to measure the weight or volume of a serving size of the product. Usually `g` or `ml`.
 * `hundred_unit`
   * Type: `string`
-  * Description: The unit used for the "per hundred" in product nutrients (`g` or `ml`).
+  * Description: The unit used for the "per hundred" product nutrients (`g` or `ml`).
 * `alcohol_by_volume`
   * Type: `float` (optional)
   * Description: The percentage of alcohol in the Product.
