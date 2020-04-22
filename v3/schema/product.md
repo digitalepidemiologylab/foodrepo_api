@@ -34,13 +34,16 @@ Any endpoint that returns a Product in its JSON response.
   * Description: The dry net weight or volume of the Product. To be used in conjunction with `unit`.
 * `unit`
   * Type: `string`
-  * Description: The unit used by `quantity` to measure the weight or volume of the product. Usually `g` or `mL`.
+  * Description: The unit used by `quantity` to measure the weight or volume of the product. Usually `g` or `ml`.
 * `portion_quantity`
   * Type: `float` (optional)
   * Description: The dry net weight or volume of a serving size of the Product. To be used in conjunction with `portion_unit`.
 * `portion_unit` (optional)
   * Type: `string`
-  * Description: The unit used by `portion_quantity` to measure the weight or volume of a serving size of the product. Usually `g` or `mL`.
+  * Description: The unit used by `portion_quantity` to measure the weight or volume of a serving size of the product. Usually `g` or `ml`.
+* `hundred_unit`
+  * Type: `string`
+  * Description: The unit used for the "per hundred" product nutrients (`g` or `ml`).
 * `alcohol_by_volume`
   * Type: `float` (optional)
   * Description: The percentage of alcohol in the Product.
