@@ -106,12 +106,7 @@ ENDPOINT = '/products'
 DESTINATION = 'foodrepo_products_snapshot.json'
 START_TIME = Time.now
 
-url = BASE_URL + ENDPOINT
-
-query = {
-  'page[number]' => 1,
-  'page[size]' => 200
-}
+url = BASE_URL + ENDPOINT + '?page%5Bsize%5D=200'
 
 headers = {
   'Authorization' => "Token token=#{KEY}",
@@ -125,14 +120,13 @@ num_queries = 0
 puts 'Fetching products from FoodRepo API...'
 
 loop do
-  response = HTTParty.get(url, query: query, headers: headers)
+  response = HTTParty.get(url, headers: headers)
   num_queries += 1
   raise unless response.code == 200 # HTTP OK
   json = JSON.parse(response.body)
   products += json['data']
   print "\rRetrieved products so far: #{products.length}..."
   url = json['links']['next']
-  query = nil
   break if url.nil?
 end
 
@@ -150,7 +144,7 @@ puts "Data successfully written to: #{DESTINATION}"
 puts "Time taken: #{(Time.now - START_TIME).round(1)} seconds"
 ```
 
-The above essentially pages through our DB, 100 products at a time, until all products are retrieved, and stores the results into a single json file. Running this code on 2020-06-02 yielded the following output:
+The above essentially pages through our DB, 200 products at a time, until all products are retrieved, and stores the results into a single json file. Running this code on 2020-06-02 yielded the following output:
 
 > Fetching products from FoodRepo API...
 <br>Retrieved products so far: 43027...
