@@ -1,3 +1,9 @@
+## Prerequisites
+
+R version 3.6.3
+
+Libraries: `httr`, `jsonlite`, `rlist`, `data.table`
+
 ## Set up
 
 In your home folder, create a `foodrepo` subfolder and put the script `utils_fr.R` inside. Then open Rstudio and run the command `file.edit("~/.Rprofile")` and add the following line in the file that pops up: `FOODREPOAPI = "thisisafakeapikeypleasegogetyoursatfoodrepodotorg"` before closing the file. If you havent generated your api key yet please visit [foodrepo website](https://www.foodrepo.org/) and do so.
