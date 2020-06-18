@@ -46,7 +46,7 @@ Example code for various languages may be found in this repo. Replace `API_KEY` 
 * [JavaScript](code/javascript/)
 * [Python](code/python/foodrepo_api.md)
 * [Ruby](code/ruby/foodrepo_api.md)
-
+* [R](code/R/instructions_foodrepo_api.md)
 ## Misc
 
 #### Compressed responses
