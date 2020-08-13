@@ -1,17 +1,17 @@
 """
-Sample Python 2.7 code for a call against the OpenFood API v3 product _search
+Sample Python 3.7 code for a call against the OpenFood API v3 product _search
 
 USAGE:
-$ python product_search.py
+$ python3 product_search.py
 
 MORE INFO:
 https://github.com/salathegroup/foodrepo_api/blob/master/v3/README.md#search
 """
 import requests
 
-BASE_URL='https://www.foodrepo.org/api/v3'
-KEY='API_KEY'
-ENDPOINT='/products/_search'
+BASE_URL = 'https://www.foodrepo.org/api/v3'
+KEY = 'API_KEY'
+ENDPOINT = '/products/_search'
 
 url = BASE_URL + ENDPOINT
 
@@ -31,10 +31,10 @@ headers = {
 }
 
 r = requests.post(url, json=query, headers=headers)
-print 'Status: ' + str(r.status_code)
+print('Status: ' + str(r.status_code))
 if r.status_code == 200:
     results = r.json()
-    print 'Number of products found: ' + str(results['hits']['total'])
-    print 'First few products...'
+    print('Number of products found: ' + str(results['hits']['total']))
+    print('First few products...')
     for hit in results['hits']['hits']:
-        print '  ' + hit['_source']['display_name_translations']['en']
+        print('  ' + hit['_source']['display_name_translations']['en'])
