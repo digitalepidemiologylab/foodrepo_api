@@ -1,14 +1,14 @@
 """
-Sample Python 2.7 code for a call against Food Repo API v3 products listing, with paging.
+Sample Python 3.7 code for a call against Food Repo API v3 products listing, with paging.
 
 USAGE:
-$ python product_listing.py
+$ python3 product_listing.py
 """
 import requests
 
-BASE_URL='https://www.foodrepo.org/api/v3'
-KEY='API_KEY'
-ENDPOINT='/products'
+BASE_URL = 'https://www.foodrepo.org/api/v3'
+KEY = 'API_KEY'
+ENDPOINT = '/products'
 
 url = BASE_URL + ENDPOINT
 
@@ -25,11 +25,11 @@ headers = {
 }
 
 r = requests.get(url, params=query, headers=headers)
-print 'Status: ' + str(r.status_code)
+print('Status: ' + str(r.status_code))
 if r.status_code == 200:
-  print 'Page loaded successfully.'
-  print 'Generated in ' + str(r.json().get('meta', {}).get('generated_in', -1)) + ' milliseconds.'
-  print 'Next page\'s URL is: ' + r.json()['links'].get('next', 'UNKNOWN')
-  print 'Barcodes on this page:'
-  for product in r.json()['data']:
-    print '  ' + product['barcode']
+    print('Page loaded successfully.')
+    print('Generated in ' + str(r.json().get('meta', {}).get('generated_in', -1)) + ' milliseconds.')
+    print('Next page\'s URL is: ' + r.json()['links'].get('next', 'UNKNOWN'))
+    print('Barcodes on this page:')
+    for product in r.json()['data']:
+        print('  ' + product['barcode'])
